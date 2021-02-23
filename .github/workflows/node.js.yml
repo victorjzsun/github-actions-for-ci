@@ -46,7 +46,7 @@ jobs:
       with:
         args: deploy --only firestore:rules
       env:
-        GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSUN_TEST }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSUN_TEST }}
         PROJECT_ID: "vsun-test"
     - uses: actions/upload-artifact@main
       with:
