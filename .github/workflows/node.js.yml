@@ -41,7 +41,14 @@ jobs:
     - name: npm install and build webpack
       run: |
         npm install
-        npm run build
+        NODE_ENV=development npm run build
+    - uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSUN_TEST }}'
+        projectId: vsun-test
+      env:
+        FIREBASE_CLI_PREVIEWS: hostingchannels
     - uses: actions/upload-artifact@main
       with:
         name: webpack artifacts
