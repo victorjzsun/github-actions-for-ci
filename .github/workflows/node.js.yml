@@ -42,12 +42,13 @@ jobs:
       run: |
         npm install
         npm run build
-    - uses: w9jds/firebase-action@master
+    - uses: FirebaseExtended/action-hosting-deploy@v0
       with:
-        args: deploy --only firestore:rules
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSUN_TEST }}'
+        projectId: vsun-test
       env:
-        GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSUN_TEST }}
-        PROJECT_ID: "vsun-test"
+        FIREBASE_CLI_PREVIEWS: hostingchannels
     - uses: actions/upload-artifact@main
       with:
         name: webpack artifacts
